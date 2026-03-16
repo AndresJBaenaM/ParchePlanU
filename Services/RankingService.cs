@@ -15,20 +15,18 @@ namespace ApiParchePlanU.Services
         }
         public async Task<List<Ranking>> GetRanking(int parcheId)
         {
-            var members = await _context.ParcheMembers.Where(m => m.Parche_Id == parcheId).ToListAsync(); 
+            var members = await _context.ParcheMembers.Where(m => m.ParcheId == parcheId).ToListAsync(); 
             var rankingList = new List<Ranking>();
 
             foreach(var member in members)
             {
-                var organizerScore = await _context.Plans.Where(p => p.CratorId == member.Id_Usuario && p.Parche_Id == parcheId).CountAsync();
-
-                var ghostScore = await _context.Attendances.Where(a => a.User_Id == member.Id_Usuario && a.Status == AttendanceStatus.Yes).CountAsync();
+                var organizerScore = await _context.Plans.Where(p => p.CreatorId == member.UsuarioId && p.ParcheId == parcheId).CountAsync();
+                var ghostScore = await _context.Attendances.Where(a => a.UserId == member.UsuarioId && a.Status == AttendanceStatus.Yes).CountAsync();
 
 
                 rankingList.Add(new Ranking
                 {
-                    UserId = member.Id_Usuario,
-                    ParcheId = parcheId,
+                    UserId = member.UsuarioId,
                     OrganizerScore = organizerScore,
                     GhosScore = ghostScore
 

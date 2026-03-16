@@ -18,7 +18,7 @@ namespace ApiParchePlanU.Services
         {
             var attendance = new Attendance
             {
-                User_Id = userId,
+                UserId = userId,
                 PlanId = planId,
                 Status = Enum.Parse<AttendanceStatus>(status)
             };

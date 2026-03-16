@@ -31,13 +31,13 @@ namespace ApiParchePlanU.Services
             return parche; 
         }
 
-        public async Task JoinParche(string userId, string inviteCode)
+        public async Task JoinParche(string usuarioId, string inviteCode)
         {
             var parche = await _context.Parches.FirstOrDefaultAsync(p => p.InviteCode == inviteCode);
             var member = new ParcheMember
             {
-                Id_Usuario = userId,
-                Parche_Id = parche.Id,
+                UsuarioId = usuarioId,
+                ParcheId = parche.Id,
                 Role = ParcheRole.Member
             }; 
             _context.ParcheMembers.Add(member);
@@ -46,7 +46,7 @@ namespace ApiParchePlanU.Services
 
         public async Task<List<ParcheMember>> GetMembers(int parcheId)
         {
-            return await _context.ParcheMembers.Where(m=> m.Parche_Id == parcheId).ToListAsync();
+            return await _context.ParcheMembers.Where(m=> m.ParcheId == parcheId).ToListAsync();
         }
     }
 }

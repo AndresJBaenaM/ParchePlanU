@@ -15,7 +15,7 @@ namespace ApiParchePlanU.Services
         }
         public async Task<List<Plan>> GetPlans(int parcheId)
         {
-            return await _context.Plans.Where(p=> p.Parche_Id == parcheId).Include(p=> p.Options).ToListAsync();
+            return await _context.Plans.Where(p=> p.ParcheId == parcheId).Include(p=> p.Options).ToListAsync();
         }
         public async Task<Plan> GetById(int planId)
         {

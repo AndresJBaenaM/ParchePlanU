@@ -17,11 +17,11 @@ public class AuthController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterDTO model)
     {
-        var result = await _authService.Register(model.fullName, model.Email, model.Program, model.password, model.AvatarUrl);
+        var result = await _authService.Register(model.nombreCompleto, model.Email, model.Program, model.password, model.AvatarUrl, model.Role);
 
         if (result.Succeeded)
         {
-            return Ok(new { Message = $"Usuario {model.fullName} creado con éxito." });
+            return Ok(new { Message = $"Usuario {model.nombreCompleto} creado con éxito." });
         }
 
         return BadRequest(result.Errors);

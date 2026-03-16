@@ -1,6 +1,7 @@
 ﻿using ApiParchePlanU.Interfaces;
 using ApiParchePlanU.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -25,12 +26,15 @@ namespace ApiParchePlanU.Services
             _configuration = configuration;
         }
 
-        public async Task<IdentityResult> Register(string email, string password, string role)
+        public async Task<IdentityResult> Register(string nombreCompleto, string email, string program, string password, string? avatarUrl, string role)
         {
             var user = new User
             {
-                UserName = email,
-                Email = email
+                UserName = email, 
+                Email = email,
+                NombreCompleto = nombreCompleto,
+                Programa = program,
+                AvatarUrl = avatarUrl
             };
 
             var result = await _userManager.CreateAsync(user, password);
