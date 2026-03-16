@@ -20,6 +20,31 @@ namespace ApiParchePlanU.DAO
         public DbSet<Vote> Votes { get; set; }
         public DbSet<Attendance> Attendances { get; set; }
         public DbSet<PlanOption> PlanOptions { get; set; }
-        public DbSet<Ranking> Rankings {  get; set; }
+        public DbSet<Ranking> Rankings { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Vote>()
+                .HasKey(v => new { v.UserId, v.PlanId });
+
+            modelBuilder.Entity<Vote>()
+                .HasOne(v => v.user)
+                .WithMany()
+                .HasForeignKey(v => v.UserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Vote>()
+                .HasOne(v => v.plan)
+                .WithMany(p => p.Votes)
+                .HasForeignKey(v => v.PlanId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Vote>()
+                .HasOne(v => v.PlanOption)
+                .WithMany()
+                .HasForeignKey(v => v.PlanOptionId)
+                .OnDelete(DeleteBehavior.NoAction);
+        }
     }
 }
