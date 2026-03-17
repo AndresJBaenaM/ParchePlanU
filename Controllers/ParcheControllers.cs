@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ApiParchePlanU.Interfaces;
 using ApiParchePlanU.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApiParchePlanU.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class ParcheController : ControllerBase
     {
         private readonly IParcheService _parcheService;

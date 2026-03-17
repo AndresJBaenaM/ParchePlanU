@@ -1,10 +1,12 @@
 ﻿using ApiParchePlanU.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiParchePlanU.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class VoteController : ControllerBase
     {
         private readonly IVoteService _voteService;

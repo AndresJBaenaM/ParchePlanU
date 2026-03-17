@@ -2,11 +2,13 @@
 using ApiParchePlanU.Interfaces;
 using ApiParchePlanU.Models;
 using ApiParchePlanU.Models.Enums;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApiParchePlanU.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class PlanController : ControllerBase
     {
         private readonly IPlanService _planService;
