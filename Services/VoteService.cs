@@ -43,7 +43,7 @@ namespace ApiParchePlanU.Services
 
         public async Task<List<Vote>> GetResults(int planId)
         {
-            return await _context.Votes.Include(v => v.PlanOption).Where(v => v.PlanOption.Plan_Id == planId).ToListAsync(); 
+            return await _context.Votes.Include(v => v.PlanOption).Where(v => v.PlanOption.PlanId == planId).ToListAsync(); 
         }
     }
 }
