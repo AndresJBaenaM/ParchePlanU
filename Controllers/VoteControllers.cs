@@ -19,15 +19,29 @@ namespace ApiParchePlanU.Controllers
         [HttpPost]
         public async Task<IActionResult> Vote(string userId, int optionId)
         {
-            await _voteService.Vote(userId, optionId);
-            return Ok("Vote registered");
+            try
+            {
+                await _voteService.Vote(userId, optionId);
+                return Ok("Vote registered");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut]
         public async Task<IActionResult> ChangeVote(string userId, int optionId)
         {
-            await _voteService.ChangeVote(userId, optionId);
-            return Ok("Vote updated");
+            try
+            {
+                await _voteService.ChangeVote(userId, optionId);
+                return Ok("Vote updated");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("results/{planId}")]

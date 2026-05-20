@@ -239,8 +239,21 @@ namespace ApiParchePlanU.DAO
 
             builder.Entity<Vote>()
                 .HasOne(v => v.PlanOption)
-                .WithMany()
+                .WithMany(o => o.Votes)
                 .HasForeignKey(v => v.PlanOptionId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+
+            builder.Entity<ParcheMember>()
+                .HasOne(m => m.user)
+                .WithMany()
+                .HasForeignKey(m => m.UsuarioId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<Attendance>()
+                .HasOne(a => a.user)
+                .WithMany()
+                .HasForeignKey(a => a.UserId)
                 .OnDelete(DeleteBehavior.NoAction);
         }
     }

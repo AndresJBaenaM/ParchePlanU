@@ -26,9 +26,10 @@ namespace ApiParchePlanU.Services
         }
         public async Task<Parche> Create(Parche parche)
         {
-            _context.Parches.Add(parche); 
+            parche.CoverImageUrl = parche.CoverImageUrl ?? "";
+            _context.Parches.Add(parche);
             await _context.SaveChangesAsync();
-            return parche; 
+            return parche;
         }
 
         public async Task JoinParche(string usuarioId, string inviteCode)
@@ -46,7 +47,10 @@ namespace ApiParchePlanU.Services
 
         public async Task<List<ParcheMember>> GetMembers(int parcheId)
         {
-            return await _context.ParcheMembers.Where(m=> m.ParcheId == parcheId).ToListAsync();
+            return await _context.ParcheMembers
+                .Where(m => m.ParcheId == parcheId)
+                .Include(m => m.user)
+                .ToListAsync();
         }
     }
 }

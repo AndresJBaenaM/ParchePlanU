@@ -12,38 +12,49 @@ namespace ApiParchePlanU.Services
         {
             _context = context;
         }
+
         public async Task Vote(string userId, int optionId)
         {
-            // Verificar si el usuario ya votó
+            var option = await _context.PlanOptions.FindAsync(optionId);
+            if (option == null) throw new Exception("Opción no encontrada");
+
             var existingVote = await _context.Votes
-                .FirstOrDefaultAsync(v => v.UserId == userId);
+                .FirstOrDefaultAsync(v => v.UserId == userId && v.PlanId == option.PlanId);
 
             if (existingVote != null)
             {
-                throw new Exception("El usuario ya votó");
+                throw new Exception("El usuario ya votó en este plan");
             }
 
             var vote = new Vote
             {
                 UserId = userId,
-                PlanOptionId = optionId
+                PlanOptionId = optionId,
+                PlanId = option.PlanId
             };
             _context.Votes.Add(vote);
             await _context.SaveChangesAsync();
         }
+
         public async Task ChangeVote(string userId, int optionId)
         {
-            var vote = await _context.Votes.FirstOrDefaultAsync(vote => vote.UserId == userId);
-            if (vote == null)
-                return; 
-            
+            var option = await _context.PlanOptions.FindAsync(optionId);
+            if (option == null) return;
+
+            var vote = await _context.Votes
+                .FirstOrDefaultAsync(v => v.UserId == userId && v.PlanId == option.PlanId);
+            if (vote == null) return;
+
             vote.PlanOptionId = optionId;
             await _context.SaveChangesAsync();
         }
 
         public async Task<List<Vote>> GetResults(int planId)
         {
-            return await _context.Votes.Include(v => v.PlanOption).Where(v => v.PlanOption.PlanId == planId).ToListAsync(); 
+            return await _context.Votes
+                .Include(v => v.PlanOption)
+                .Where(v => v.PlanOption.PlanId == planId)
+                .ToListAsync();
         }
     }
 }

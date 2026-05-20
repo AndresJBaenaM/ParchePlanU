@@ -8,26 +8,34 @@ namespace ApiParchePlanU.Services
 {
     public class PlanService : IPlanService
     {
-        public readonly ApplicationDbContext _context; 
+        public readonly ApplicationDbContext _context;
         public PlanService(ApplicationDbContext context)
         {
             _context = context;
         }
+
         public async Task<List<Plan>> GetPlans(int parcheId)
         {
-            return await _context.Plans.Where(p=> p.ParcheId == parcheId).Include(p=> p.Options).ToListAsync();
+            return await _context.Plans
+                .Where(p => p.ParcheId == parcheId)
+                .Include(p => p.Options)
+                    .ThenInclude(o => o.Votes)
+                .ToListAsync();
         }
+
         public async Task<Plan> GetById(int planId)
         {
-            return await _context.Plans.FindAsync(planId); 
+            return await _context.Plans.FindAsync(planId);
         }
+
         public async Task<Plan> CreatePlan(Plan plan)
         {
-            plan.State = PlanState.Draft; 
+            plan.State = PlanState.Draft;
             _context.Plans.Add(plan);
             await _context.SaveChangesAsync();
-            return plan; 
+            return plan;
         }
+
         public async Task ChangeState(int planId, PlanState newState)
         {
             var plan = await _context.Plans.FindAsync(planId);
