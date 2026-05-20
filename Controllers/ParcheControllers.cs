@@ -17,7 +17,6 @@ namespace ApiParchePlanU.Controllers
             _parcheService = parcheService;
         }
 
-        // Obtener todos los parches
         [HttpGet]
         public async Task<ActionResult<List<Parche>>> GetAll()
         {
@@ -25,27 +24,23 @@ namespace ApiParchePlanU.Controllers
             return Ok(parches);
         }
 
-        // Obtener un parche por ID
         [HttpGet("{id}")]
         public async Task<ActionResult<Parche>> GetById(int id)
         {
             var parche = await _parcheService.GetById(id);
-
             if (parche == null)
                 return NotFound("Parche no encontrado");
-
             return Ok(parche);
         }
 
-        // Crear parche
         [HttpPost]
-        public async Task<ActionResult<Parche>> Create([FromBody] Parche parche)
+        public async Task<ActionResult<Parche>> Create([FromBody] Parche parche, [FromQuery] string creatorId)
         {
+            parche.CreatorId = creatorId;
             var nuevoParche = await _parcheService.Create(parche);
             return Ok(nuevoParche);
         }
 
-        // Unirse a un parche con código
         [HttpPost("join")]
         public async Task<IActionResult> JoinParche(
             [FromQuery] string userId,
@@ -55,7 +50,6 @@ namespace ApiParchePlanU.Controllers
             return Ok("Usuario unido al parche");
         }
 
-        // Ver miembros del parche
         [HttpGet("{parcheId}/members")]
         public async Task<ActionResult<List<ParcheMember>>> GetMembers(int parcheId)
         {

@@ -13,6 +13,7 @@ namespace ApiParchePlanU.Models
         public PlanState State { get; set; }
         public int ParcheId { get; set; }
         public Parche? parche { get; set; }
+        public User? Creator { get; set; }
         public List<PlanOption> Options { get; set; }
         public List<Attendance>? Attendances { get; set; }
         public List<Vote>? Votes { get; set; }

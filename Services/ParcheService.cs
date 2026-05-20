@@ -29,6 +29,16 @@ namespace ApiParchePlanU.Services
             parche.CoverImageUrl = parche.CoverImageUrl ?? "";
             _context.Parches.Add(parche);
             await _context.SaveChangesAsync();
+
+            var owner = new ParcheMember
+            {
+                UsuarioId = parche.CreatorId,
+                ParcheId = parche.Id,
+                Role = ParcheRole.Owner
+            };
+            _context.ParcheMembers.Add(owner);
+            await _context.SaveChangesAsync();
+
             return parche;
         }
 

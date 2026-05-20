@@ -4,6 +4,7 @@ using ApiParchePlanU.DAO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiParchePlanU.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260520220712_AddCreatorIdToParche")]
+    partial class AddCreatorIdToParche
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -343,7 +346,7 @@ namespace ApiParchePlanU.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatorId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -358,8 +361,6 @@ namespace ApiParchePlanU.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CreatorId");
 
                     b.ToTable("Parches");
 
@@ -1141,7 +1142,7 @@ namespace ApiParchePlanU.Migrations
                             Id = "user-0001",
                             AccessFailedCount = 0,
                             AvatarUrl = "https://i.pravatar.cc/150?img=1",
-                            ConcurrencyStamp = "bf9ce6ee-4e39-45cf-9d65-842d422087af",
+                            ConcurrencyStamp = "61634e69-3f9c-4075-875b-7a55482f2e1e",
                             Email = "miguelg@universidad.edu.co",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -1151,7 +1152,7 @@ namespace ApiParchePlanU.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEP52pK7DjOO3RRlghXyWLLccWFImunrp5ujtLWHMCg29f+DoSb4U81DUEtxBBdrSBw==",
                             PhoneNumberConfirmed = false,
                             Programa = "Ingeniería de Sistemas",
-                            SecurityStamp = "aa44c85b-594c-45ac-a689-a40a301102af",
+                            SecurityStamp = "30ca33c5-c48b-4aaf-907f-77242167fcc8",
                             TwoFactorEnabled = false,
                             UserName = "miguelg"
                         },
@@ -1160,7 +1161,7 @@ namespace ApiParchePlanU.Migrations
                             Id = "user-0002",
                             AccessFailedCount = 0,
                             AvatarUrl = "https://i.pravatar.cc/150?img=2",
-                            ConcurrencyStamp = "54a87016-abaf-4eca-8326-fd66682e690a",
+                            ConcurrencyStamp = "8f9a692c-b4ec-4de9-aebe-25867f8aea6d",
                             Email = "andresb@universidad.edu.co",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -1170,7 +1171,7 @@ namespace ApiParchePlanU.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEP52pK7DjOO3RRlghXyWLLccWFImunrp5ujtLWHMCg29f+DoSb4U81DUEtxBBdrSBw==",
                             PhoneNumberConfirmed = false,
                             Programa = "Ingeniería de Sistemas",
-                            SecurityStamp = "d6449372-fd44-43cc-a569-afc7d32115d2",
+                            SecurityStamp = "367db611-ae51-41a1-94d9-6e7e7d2202d5",
                             TwoFactorEnabled = false,
                             UserName = "andresb"
                         },
@@ -1179,7 +1180,7 @@ namespace ApiParchePlanU.Migrations
                             Id = "user-0003",
                             AccessFailedCount = 0,
                             AvatarUrl = "https://i.pravatar.cc/150?img=3",
-                            ConcurrencyStamp = "b4855275-edc8-4d04-9ced-1718b39d4b2c",
+                            ConcurrencyStamp = "179a6ae6-090c-4eaa-aaaf-c5416a25d5ad",
                             Email = "laurart@universidad.edu.co",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -1189,7 +1190,7 @@ namespace ApiParchePlanU.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEP52pK7DjOO3RRlghXyWLLccWFImunrp5ujtLWHMCg29f+DoSb4U81DUEtxBBdrSBw==",
                             PhoneNumberConfirmed = false,
                             Programa = "Ingeniería de Sistemas",
-                            SecurityStamp = "e9eb99f2-91d2-44f7-929d-1808d96b4741",
+                            SecurityStamp = "8dc48d0d-d19a-4a66-9da1-61ca5aed055b",
                             TwoFactorEnabled = false,
                             UserName = "laurart"
                         },
@@ -1198,7 +1199,7 @@ namespace ApiParchePlanU.Migrations
                             Id = "user-0004",
                             AccessFailedCount = 0,
                             AvatarUrl = "https://i.pravatar.cc/150?img=4",
-                            ConcurrencyStamp = "7b5e2593-7d58-46d9-bf27-5d0401296798",
+                            ConcurrencyStamp = "4205eca5-da19-41df-aea3-318c07e39933",
                             Email = "carlosr@universidad.edu.co",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -1208,7 +1209,7 @@ namespace ApiParchePlanU.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEP52pK7DjOO3RRlghXyWLLccWFImunrp5ujtLWHMCg29f+DoSb4U81DUEtxBBdrSBw==",
                             PhoneNumberConfirmed = false,
                             Programa = "Ingeniería de Sistemas",
-                            SecurityStamp = "24e49ade-bfcf-4f72-b751-96cd3ddac609",
+                            SecurityStamp = "8806076c-a4ca-49a8-9ae6-11e7729d1bb2",
                             TwoFactorEnabled = false,
                             UserName = "carlosr"
                         },
@@ -1217,7 +1218,7 @@ namespace ApiParchePlanU.Migrations
                             Id = "user-0005",
                             AccessFailedCount = 0,
                             AvatarUrl = "https://i.pravatar.cc/150?img=5",
-                            ConcurrencyStamp = "fbfebc89-922b-4387-9707-e8ed623465a6",
+                            ConcurrencyStamp = "8018adb7-b911-4ba1-a68d-fcda5205d3d5",
                             Email = "marial@universidad.edu.co",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -1227,7 +1228,7 @@ namespace ApiParchePlanU.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEP52pK7DjOO3RRlghXyWLLccWFImunrp5ujtLWHMCg29f+DoSb4U81DUEtxBBdrSBw==",
                             PhoneNumberConfirmed = false,
                             Programa = "Ingeniería de Sistemas",
-                            SecurityStamp = "9cfaf10f-b889-4155-8ac7-d275f8c782dc",
+                            SecurityStamp = "66b94545-523a-4fc5-a9a0-3b443805e164",
                             TwoFactorEnabled = false,
                             UserName = "marial"
                         },
@@ -1236,7 +1237,7 @@ namespace ApiParchePlanU.Migrations
                             Id = "user-0006",
                             AccessFailedCount = 0,
                             AvatarUrl = "https://i.pravatar.cc/150?img=6",
-                            ConcurrencyStamp = "928d26a6-6bb8-4adb-8ca9-bc41cea917e2",
+                            ConcurrencyStamp = "c65efef9-82a4-45b3-8608-e35551046328",
                             Email = "juanp@universidad.edu.co",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -1246,7 +1247,7 @@ namespace ApiParchePlanU.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEP52pK7DjOO3RRlghXyWLLccWFImunrp5ujtLWHMCg29f+DoSb4U81DUEtxBBdrSBw==",
                             PhoneNumberConfirmed = false,
                             Programa = "Ingeniería Industrial",
-                            SecurityStamp = "4c6c95ef-9f9b-4ae2-ac48-dab82fa9bbbb",
+                            SecurityStamp = "0e8bc488-76ff-444d-9324-935cb2dfe66e",
                             TwoFactorEnabled = false,
                             UserName = "juanp"
                         },
@@ -1255,7 +1256,7 @@ namespace ApiParchePlanU.Migrations
                             Id = "user-0007",
                             AccessFailedCount = 0,
                             AvatarUrl = "https://i.pravatar.cc/150?img=7",
-                            ConcurrencyStamp = "453dc99f-7a5f-4a38-85ed-f8b94396600c",
+                            ConcurrencyStamp = "761652e4-be86-4ac1-8285-37ecc10079a7",
                             Email = "sofiad@universidad.edu.co",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -1265,7 +1266,7 @@ namespace ApiParchePlanU.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEP52pK7DjOO3RRlghXyWLLccWFImunrp5ujtLWHMCg29f+DoSb4U81DUEtxBBdrSBw==",
                             PhoneNumberConfirmed = false,
                             Programa = "Ingeniería Industrial",
-                            SecurityStamp = "b63dd0b1-e5b1-465e-9bb9-7d11272f7de3",
+                            SecurityStamp = "1f78e631-07f5-40f6-9275-4dadaecfbe3d",
                             TwoFactorEnabled = false,
                             UserName = "sofiad"
                         },
@@ -1274,7 +1275,7 @@ namespace ApiParchePlanU.Migrations
                             Id = "user-0008",
                             AccessFailedCount = 0,
                             AvatarUrl = "https://i.pravatar.cc/150?img=8",
-                            ConcurrencyStamp = "1fdd574e-3b60-4406-947c-41e95d27234a",
+                            ConcurrencyStamp = "6dbbe494-db38-4d2a-a8b5-b567c2f33628",
                             Email = "danielc@universidad.edu.co",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -1284,7 +1285,7 @@ namespace ApiParchePlanU.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEP52pK7DjOO3RRlghXyWLLccWFImunrp5ujtLWHMCg29f+DoSb4U81DUEtxBBdrSBw==",
                             PhoneNumberConfirmed = false,
                             Programa = "Ingeniería Industrial",
-                            SecurityStamp = "b0085e3a-f804-45f8-968d-c445a0213305",
+                            SecurityStamp = "d091456a-0947-49b8-a9dc-41c5aaacf729",
                             TwoFactorEnabled = false,
                             UserName = "danielc"
                         },
@@ -1293,7 +1294,7 @@ namespace ApiParchePlanU.Migrations
                             Id = "user-0009",
                             AccessFailedCount = 0,
                             AvatarUrl = "https://i.pravatar.cc/150?img=9",
-                            ConcurrencyStamp = "02674d81-5494-4769-a2a0-1fbdd2bc70f9",
+                            ConcurrencyStamp = "e63dc1bb-d514-43ef-a139-903973d60f50",
                             Email = "valentinag@universidad.edu.co",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -1303,7 +1304,7 @@ namespace ApiParchePlanU.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEP52pK7DjOO3RRlghXyWLLccWFImunrp5ujtLWHMCg29f+DoSb4U81DUEtxBBdrSBw==",
                             PhoneNumberConfirmed = false,
                             Programa = "Ingeniería Industrial",
-                            SecurityStamp = "f96a235f-abb8-40f4-889d-79f7018634c1",
+                            SecurityStamp = "4a369671-4a9f-4bba-a7e3-246a705c897a",
                             TwoFactorEnabled = false,
                             UserName = "valentinag"
                         },
@@ -1312,7 +1313,7 @@ namespace ApiParchePlanU.Migrations
                             Id = "user-0010",
                             AccessFailedCount = 0,
                             AvatarUrl = "https://i.pravatar.cc/150?img=10",
-                            ConcurrencyStamp = "4e5dceab-293c-49aa-913b-b373ed52a270",
+                            ConcurrencyStamp = "aa091e8a-2801-4389-b3bf-017b1e2be22b",
                             Email = "camilov@universidad.edu.co",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -1322,7 +1323,7 @@ namespace ApiParchePlanU.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEP52pK7DjOO3RRlghXyWLLccWFImunrp5ujtLWHMCg29f+DoSb4U81DUEtxBBdrSBw==",
                             PhoneNumberConfirmed = false,
                             Programa = "Ingeniería Industrial",
-                            SecurityStamp = "b060edf9-9b35-4d8a-9c1f-51dc3da22d6e",
+                            SecurityStamp = "15e5556f-ccc4-4a18-a4f8-c8955890d576",
                             TwoFactorEnabled = false,
                             UserName = "camilov"
                         });
@@ -1560,14 +1561,14 @@ namespace ApiParchePlanU.Migrations
                         new
                         {
                             Id = "a1b2c3d4-0001-0001-0001-000000000001",
-                            ConcurrencyStamp = "5447eafa-6b95-47a8-9df5-005b0ff2bd09",
+                            ConcurrencyStamp = "c0dee45e-8fd0-40b2-ba22-9c27619191e0",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "a1b2c3d4-0001-0001-0001-000000000002",
-                            ConcurrencyStamp = "7b2de6de-c2ba-4104-91fd-2577ec797e30",
+                            ConcurrencyStamp = "55dc4945-d184-4a7b-8e52-41fc7c3091da",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -1696,14 +1697,6 @@ namespace ApiParchePlanU.Migrations
                     b.Navigation("plan");
 
                     b.Navigation("user");
-                });
-
-            modelBuilder.Entity("ApiParchePlanU.Models.Parche", b =>
-                {
-                    b.HasOne("ApiParchePlanU.Models.User", null)
-                        .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.NoAction);
                 });
 
             modelBuilder.Entity("ApiParchePlanU.Models.ParcheMember", b =>

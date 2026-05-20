@@ -20,6 +20,7 @@ namespace ApiParchePlanU.Services
                 .Where(p => p.ParcheId == parcheId)
                 .Include(p => p.Options)
                     .ThenInclude(o => o.Votes)
+                .Include(p => p.Creator)
                 .ToListAsync();
         }
 

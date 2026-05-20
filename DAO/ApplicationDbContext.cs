@@ -255,6 +255,18 @@ namespace ApiParchePlanU.DAO
                 .WithMany()
                 .HasForeignKey(a => a.UserId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<Plan>()
+                .HasOne(p => p.Creator)
+                .WithMany()
+                .HasForeignKey(p => p.CreatorId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<Parche>()
+                .HasOne<User>()
+                .WithMany()
+                .HasForeignKey(p => p.CreatorId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
