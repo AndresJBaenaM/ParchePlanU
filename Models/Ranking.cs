@@ -1,0 +1,11 @@
+﻿namespace ApiParchePlanU.Models
+{
+    public class Ranking
+    {
+        public int Id {  get; set; }
+        public string UserId { get; set; }
+        public int ParcheId { get; set; }
+        public int OrganizerScore { get; set; }
+        public int GhosScore { get; set; }
+    }
+}
