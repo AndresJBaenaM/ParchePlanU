@@ -4,6 +4,7 @@ using ApiParchePlanU.DAO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiParchePlanU.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260317123953_SeedData")]
+    partial class SeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,20 +57,11 @@ namespace ApiParchePlanU.Migrations
                             Id = 1,
                             PlanId = 1,
                             Status = 0,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            UserId = "user1"
-=======
                             UserId = "user-0001"
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         },
                         new
                         {
                             Id = 2,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            PlanId = 2,
-                            Status = 0,
-                            UserId = "user2"
-=======
                             PlanId = 1,
                             Status = 0,
                             UserId = "user-0002"
@@ -337,7 +331,6 @@ namespace ApiParchePlanU.Migrations
                             PlanId = 9,
                             Status = 0,
                             UserId = "user-0010"
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         });
                 });
 
@@ -350,10 +343,8 @@ namespace ApiParchePlanU.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CoverImageUrl")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatorId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -369,40 +360,24 @@ namespace ApiParchePlanU.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatorId");
-
                     b.ToTable("Parches");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            CoverImageUrl = "img1.jpg",
-                            Description = "Jugamos fútbol",
-                            InviteCode = "FUT123",
-                            Name = "Parche Futbol"
-=======
                             CoverImageUrl = "https://picsum.photos/seed/sistemas/400/200",
                             Description = "El parche de Ingeniería de Sistemas",
                             InviteCode = "SIS2026",
                             Name = "Parche Sistemas"
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         },
                         new
                         {
                             Id = 2,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            CoverImageUrl = "img2.jpg",
-                            Description = "Amantes del cine",
-                            InviteCode = "CINE123",
-                            Name = "Parche Cine"
-=======
                             CoverImageUrl = "https://picsum.photos/seed/industrial/400/200",
                             Description = "El parche de Ingeniería Industrial",
                             InviteCode = "IND2026",
                             Name = "Parche Industrial"
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         });
                 });
 
@@ -422,13 +397,16 @@ namespace ApiParchePlanU.Migrations
 
                     b.Property<string>("UsuarioId")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("userId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ParcheId");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("userId");
 
                     b.ToTable("ParcheMembers");
 
@@ -438,32 +416,18 @@ namespace ApiParchePlanU.Migrations
                             Id = 1,
                             ParcheId = 1,
                             Role = 0,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            UsuarioId = "user1"
-=======
                             UsuarioId = "user-0001"
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         },
                         new
                         {
                             Id = 2,
                             ParcheId = 1,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            Role = 0,
-                            UsuarioId = "user2"
-=======
                             Role = 2,
                             UsuarioId = "user-0002"
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         },
                         new
                         {
                             Id = 3,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            ParcheId = 2,
-                            Role = 0,
-                            UsuarioId = "user2"
-=======
                             ParcheId = 1,
                             Role = 2,
                             UsuarioId = "user-0003"
@@ -516,7 +480,6 @@ namespace ApiParchePlanU.Migrations
                             ParcheId = 2,
                             Role = 2,
                             UsuarioId = "user-0010"
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         });
                 });
 
@@ -529,12 +492,8 @@ namespace ApiParchePlanU.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CreatorId")
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                        .HasColumnType("nvarchar(max)");
-=======
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -558,8 +517,6 @@ namespace ApiParchePlanU.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatorId");
-
                     b.HasIndex("ParcheId");
 
                     b.ToTable("Plans");
@@ -568,14 +525,6 @@ namespace ApiParchePlanU.Migrations
                         new
                         {
                             Id = 1,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            Description = "Fútbol en cancha",
-                            EndVoting = new DateTime(2026, 3, 17, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            ParcheId = 1,
-                            StartVoting = new DateTime(2026, 3, 16, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            State = 1,
-                            Title = "Partido sábado"
-=======
                             CreatorId = "user-0001",
                             Description = "Plan de cine grupal",
                             EndVoting = new DateTime(2026, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -583,19 +532,10 @@ namespace ApiParchePlanU.Migrations
                             StartVoting = new DateTime(2026, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             State = 1,
                             Title = "Cine en el campus"
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         },
                         new
                         {
                             Id = 2,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            Description = "Ver película",
-                            EndVoting = new DateTime(2026, 3, 19, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            ParcheId = 2,
-                            StartVoting = new DateTime(2026, 3, 18, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            State = 0,
-                            Title = "Ir a cine"
-=======
                             CreatorId = "user-0002",
                             Description = "Partido en la cancha",
                             EndVoting = new DateTime(2026, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -746,7 +686,6 @@ namespace ApiParchePlanU.Migrations
                             StartVoting = new DateTime(2026, 3, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             State = 1,
                             Title = "Ciclovía grupal"
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         });
                 });
 
@@ -778,50 +717,27 @@ namespace ApiParchePlanU.Migrations
                         new
                         {
                             Id = 1,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            Lugar = "Cancha A",
-                            PlanId = 1,
-                            Time = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-=======
                             Lugar = "Campus Universidad",
                             PlanId = 1,
                             Time = new DateTime(2026, 4, 5, 14, 0, 0, 0, DateTimeKind.Unspecified)
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         },
                         new
                         {
                             Id = 2,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            Lugar = "Cancha B",
-                            PlanId = 1,
-                            Time = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-=======
                             Lugar = "Parque El Poblado",
                             PlanId = 1,
                             Time = new DateTime(2026, 4, 6, 16, 0, 0, 0, DateTimeKind.Unspecified)
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         },
                         new
                         {
                             Id = 3,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            Lugar = "Cine 1",
-                            PlanId = 2,
-                            Time = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-=======
                             Lugar = "Centro Comercial",
                             PlanId = 1,
                             Time = new DateTime(2026, 4, 7, 18, 0, 0, 0, DateTimeKind.Unspecified)
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         },
                         new
                         {
                             Id = 4,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            Lugar = "Cine 2",
-                            PlanId = 2,
-                            Time = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-=======
                             Lugar = "Cancha Principal",
                             PlanId = 2,
                             Time = new DateTime(2026, 4, 5, 10, 0, 0, 0, DateTimeKind.Unspecified)
@@ -1112,7 +1028,6 @@ namespace ApiParchePlanU.Migrations
                             Lugar = "Ruta Montaña",
                             PlanId = 15,
                             Time = new DateTime(2026, 4, 7, 9, 0, 0, 0, DateTimeKind.Unspecified)
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         });
                 });
 
@@ -1135,9 +1050,6 @@ namespace ApiParchePlanU.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -1226,7 +1138,7 @@ namespace ApiParchePlanU.Migrations
                             Id = "user-0001",
                             AccessFailedCount = 0,
                             AvatarUrl = "https://i.pravatar.cc/150?img=1",
-                            ConcurrencyStamp = "bf9ce6ee-4e39-45cf-9d65-842d422087af",
+                            ConcurrencyStamp = "39626576-458d-438f-b0ad-ec7b7fc039ab",
                             Email = "miguelg@universidad.edu.co",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -1236,7 +1148,7 @@ namespace ApiParchePlanU.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEP52pK7DjOO3RRlghXyWLLccWFImunrp5ujtLWHMCg29f+DoSb4U81DUEtxBBdrSBw==",
                             PhoneNumberConfirmed = false,
                             Programa = "Ingeniería de Sistemas",
-                            SecurityStamp = "aa44c85b-594c-45ac-a689-a40a301102af",
+                            SecurityStamp = "31e9b909-a79c-4998-8759-4171f6a38c1d",
                             TwoFactorEnabled = false,
                             UserName = "miguelg"
                         },
@@ -1245,7 +1157,7 @@ namespace ApiParchePlanU.Migrations
                             Id = "user-0002",
                             AccessFailedCount = 0,
                             AvatarUrl = "https://i.pravatar.cc/150?img=2",
-                            ConcurrencyStamp = "54a87016-abaf-4eca-8326-fd66682e690a",
+                            ConcurrencyStamp = "1906e9c6-1da0-4829-abaa-a5edf8f5123a",
                             Email = "andresb@universidad.edu.co",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -1255,7 +1167,7 @@ namespace ApiParchePlanU.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEP52pK7DjOO3RRlghXyWLLccWFImunrp5ujtLWHMCg29f+DoSb4U81DUEtxBBdrSBw==",
                             PhoneNumberConfirmed = false,
                             Programa = "Ingeniería de Sistemas",
-                            SecurityStamp = "d6449372-fd44-43cc-a569-afc7d32115d2",
+                            SecurityStamp = "4da1932f-4bd5-4e2d-bdbb-0387093afb80",
                             TwoFactorEnabled = false,
                             UserName = "andresb"
                         },
@@ -1264,7 +1176,7 @@ namespace ApiParchePlanU.Migrations
                             Id = "user-0003",
                             AccessFailedCount = 0,
                             AvatarUrl = "https://i.pravatar.cc/150?img=3",
-                            ConcurrencyStamp = "b4855275-edc8-4d04-9ced-1718b39d4b2c",
+                            ConcurrencyStamp = "b7ea4a82-be19-4962-85d3-df1f99a3e892",
                             Email = "laurart@universidad.edu.co",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -1274,7 +1186,7 @@ namespace ApiParchePlanU.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEP52pK7DjOO3RRlghXyWLLccWFImunrp5ujtLWHMCg29f+DoSb4U81DUEtxBBdrSBw==",
                             PhoneNumberConfirmed = false,
                             Programa = "Ingeniería de Sistemas",
-                            SecurityStamp = "e9eb99f2-91d2-44f7-929d-1808d96b4741",
+                            SecurityStamp = "52f30551-1e04-4cf4-8c18-6222db6a58a6",
                             TwoFactorEnabled = false,
                             UserName = "laurart"
                         },
@@ -1283,7 +1195,7 @@ namespace ApiParchePlanU.Migrations
                             Id = "user-0004",
                             AccessFailedCount = 0,
                             AvatarUrl = "https://i.pravatar.cc/150?img=4",
-                            ConcurrencyStamp = "7b5e2593-7d58-46d9-bf27-5d0401296798",
+                            ConcurrencyStamp = "29506520-6d48-4930-81d5-73209541a4dc",
                             Email = "carlosr@universidad.edu.co",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -1293,7 +1205,7 @@ namespace ApiParchePlanU.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEP52pK7DjOO3RRlghXyWLLccWFImunrp5ujtLWHMCg29f+DoSb4U81DUEtxBBdrSBw==",
                             PhoneNumberConfirmed = false,
                             Programa = "Ingeniería de Sistemas",
-                            SecurityStamp = "24e49ade-bfcf-4f72-b751-96cd3ddac609",
+                            SecurityStamp = "66ea2981-3650-4e5b-8e49-707cc9eb753f",
                             TwoFactorEnabled = false,
                             UserName = "carlosr"
                         },
@@ -1302,7 +1214,7 @@ namespace ApiParchePlanU.Migrations
                             Id = "user-0005",
                             AccessFailedCount = 0,
                             AvatarUrl = "https://i.pravatar.cc/150?img=5",
-                            ConcurrencyStamp = "fbfebc89-922b-4387-9707-e8ed623465a6",
+                            ConcurrencyStamp = "523a09f8-7597-4c44-b26e-9bcc9c84e0a2",
                             Email = "marial@universidad.edu.co",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -1312,7 +1224,7 @@ namespace ApiParchePlanU.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEP52pK7DjOO3RRlghXyWLLccWFImunrp5ujtLWHMCg29f+DoSb4U81DUEtxBBdrSBw==",
                             PhoneNumberConfirmed = false,
                             Programa = "Ingeniería de Sistemas",
-                            SecurityStamp = "9cfaf10f-b889-4155-8ac7-d275f8c782dc",
+                            SecurityStamp = "76f17f3c-072b-4f75-b6bf-2452c94a7bd0",
                             TwoFactorEnabled = false,
                             UserName = "marial"
                         },
@@ -1321,7 +1233,7 @@ namespace ApiParchePlanU.Migrations
                             Id = "user-0006",
                             AccessFailedCount = 0,
                             AvatarUrl = "https://i.pravatar.cc/150?img=6",
-                            ConcurrencyStamp = "928d26a6-6bb8-4adb-8ca9-bc41cea917e2",
+                            ConcurrencyStamp = "b7bf73f4-2160-40d3-9f47-2003d33885f2",
                             Email = "juanp@universidad.edu.co",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -1331,7 +1243,7 @@ namespace ApiParchePlanU.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEP52pK7DjOO3RRlghXyWLLccWFImunrp5ujtLWHMCg29f+DoSb4U81DUEtxBBdrSBw==",
                             PhoneNumberConfirmed = false,
                             Programa = "Ingeniería Industrial",
-                            SecurityStamp = "4c6c95ef-9f9b-4ae2-ac48-dab82fa9bbbb",
+                            SecurityStamp = "6471a6b8-2e64-4b24-9f02-aa76ea1dd606",
                             TwoFactorEnabled = false,
                             UserName = "juanp"
                         },
@@ -1340,7 +1252,7 @@ namespace ApiParchePlanU.Migrations
                             Id = "user-0007",
                             AccessFailedCount = 0,
                             AvatarUrl = "https://i.pravatar.cc/150?img=7",
-                            ConcurrencyStamp = "453dc99f-7a5f-4a38-85ed-f8b94396600c",
+                            ConcurrencyStamp = "cac46c39-2fe3-449b-879e-2a13d7bf9efa",
                             Email = "sofiad@universidad.edu.co",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -1350,7 +1262,7 @@ namespace ApiParchePlanU.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEP52pK7DjOO3RRlghXyWLLccWFImunrp5ujtLWHMCg29f+DoSb4U81DUEtxBBdrSBw==",
                             PhoneNumberConfirmed = false,
                             Programa = "Ingeniería Industrial",
-                            SecurityStamp = "b63dd0b1-e5b1-465e-9bb9-7d11272f7de3",
+                            SecurityStamp = "e15c3964-e6b6-48dc-8a24-1dd80696d918",
                             TwoFactorEnabled = false,
                             UserName = "sofiad"
                         },
@@ -1359,7 +1271,7 @@ namespace ApiParchePlanU.Migrations
                             Id = "user-0008",
                             AccessFailedCount = 0,
                             AvatarUrl = "https://i.pravatar.cc/150?img=8",
-                            ConcurrencyStamp = "1fdd574e-3b60-4406-947c-41e95d27234a",
+                            ConcurrencyStamp = "7def790d-889c-43db-ab40-6231d04ac89f",
                             Email = "danielc@universidad.edu.co",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -1369,7 +1281,7 @@ namespace ApiParchePlanU.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEP52pK7DjOO3RRlghXyWLLccWFImunrp5ujtLWHMCg29f+DoSb4U81DUEtxBBdrSBw==",
                             PhoneNumberConfirmed = false,
                             Programa = "Ingeniería Industrial",
-                            SecurityStamp = "b0085e3a-f804-45f8-968d-c445a0213305",
+                            SecurityStamp = "18dcef97-42f6-435a-8d8f-f6f42910ace4",
                             TwoFactorEnabled = false,
                             UserName = "danielc"
                         },
@@ -1378,7 +1290,7 @@ namespace ApiParchePlanU.Migrations
                             Id = "user-0009",
                             AccessFailedCount = 0,
                             AvatarUrl = "https://i.pravatar.cc/150?img=9",
-                            ConcurrencyStamp = "02674d81-5494-4769-a2a0-1fbdd2bc70f9",
+                            ConcurrencyStamp = "694a5933-a249-41b6-94a6-f2be01ccda4c",
                             Email = "valentinag@universidad.edu.co",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -1388,7 +1300,7 @@ namespace ApiParchePlanU.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEP52pK7DjOO3RRlghXyWLLccWFImunrp5ujtLWHMCg29f+DoSb4U81DUEtxBBdrSBw==",
                             PhoneNumberConfirmed = false,
                             Programa = "Ingeniería Industrial",
-                            SecurityStamp = "f96a235f-abb8-40f4-889d-79f7018634c1",
+                            SecurityStamp = "1246c7c6-40f0-445c-9397-927cae0ee44e",
                             TwoFactorEnabled = false,
                             UserName = "valentinag"
                         },
@@ -1397,7 +1309,7 @@ namespace ApiParchePlanU.Migrations
                             Id = "user-0010",
                             AccessFailedCount = 0,
                             AvatarUrl = "https://i.pravatar.cc/150?img=10",
-                            ConcurrencyStamp = "4e5dceab-293c-49aa-913b-b373ed52a270",
+                            ConcurrencyStamp = "2d3de34f-9513-4f88-87f8-3b4e7bcedb59",
                             Email = "camilov@universidad.edu.co",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -1407,7 +1319,7 @@ namespace ApiParchePlanU.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEP52pK7DjOO3RRlghXyWLLccWFImunrp5ujtLWHMCg29f+DoSb4U81DUEtxBBdrSBw==",
                             PhoneNumberConfirmed = false,
                             Programa = "Ingeniería Industrial",
-                            SecurityStamp = "b060edf9-9b35-4d8a-9c1f-51dc3da22d6e",
+                            SecurityStamp = "a6408e84-8151-4d03-b9e0-acffb4c8a9c2",
                             TwoFactorEnabled = false,
                             UserName = "camilov"
                         });
@@ -1435,21 +1347,12 @@ namespace ApiParchePlanU.Migrations
                     b.HasData(
                         new
                         {
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            UserId = "user1",
-=======
                             UserId = "user-0001",
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                             PlanId = 1,
                             PlanOptionId = 1
                         },
                         new
                         {
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            UserId = "user2",
-                            PlanId = 2,
-                            PlanOptionId = 3
-=======
                             UserId = "user-0002",
                             PlanId = 1,
                             PlanOptionId = 2
@@ -1621,7 +1524,6 @@ namespace ApiParchePlanU.Migrations
                             UserId = "user-0009",
                             PlanId = 8,
                             PlanOptionId = 23
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         });
                 });
 
@@ -1655,14 +1557,14 @@ namespace ApiParchePlanU.Migrations
                         new
                         {
                             Id = "a1b2c3d4-0001-0001-0001-000000000001",
-                            ConcurrencyStamp = "5447eafa-6b95-47a8-9df5-005b0ff2bd09",
+                            ConcurrencyStamp = "e7b5969a-51cf-4a34-ad5f-1ba2139cc38d",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "a1b2c3d4-0001-0001-0001-000000000002",
-                            ConcurrencyStamp = "7b2de6de-c2ba-4104-91fd-2577ec797e30",
+                            ConcurrencyStamp = "bd8a04ab-620e-445f-b5b5-7b76726e00cf",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -1785,20 +1687,12 @@ namespace ApiParchePlanU.Migrations
                     b.HasOne("ApiParchePlanU.Models.User", "user")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("plan");
 
                     b.Navigation("user");
-                });
-
-            modelBuilder.Entity("ApiParchePlanU.Models.Parche", b =>
-                {
-                    b.HasOne("ApiParchePlanU.Models.User", null)
-                        .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.NoAction);
                 });
 
             modelBuilder.Entity("ApiParchePlanU.Models.ParcheMember", b =>
@@ -1811,9 +1705,7 @@ namespace ApiParchePlanU.Migrations
 
                     b.HasOne("ApiParchePlanU.Models.User", "user")
                         .WithMany()
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .HasForeignKey("userId");
 
                     b.Navigation("parche");
 
@@ -1822,19 +1714,11 @@ namespace ApiParchePlanU.Migrations
 
             modelBuilder.Entity("ApiParchePlanU.Models.Plan", b =>
                 {
-                    b.HasOne("ApiParchePlanU.Models.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("ApiParchePlanU.Models.Parche", "parche")
                         .WithMany("Plans")
                         .HasForeignKey("ParcheId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Creator");
 
                     b.Navigation("parche");
                 });
@@ -1859,7 +1743,7 @@ namespace ApiParchePlanU.Migrations
                         .IsRequired();
 
                     b.HasOne("ApiParchePlanU.Models.PlanOption", "PlanOption")
-                        .WithMany("Votes")
+                        .WithMany()
                         .HasForeignKey("PlanOptionId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
@@ -1941,11 +1825,6 @@ namespace ApiParchePlanU.Migrations
 
                     b.Navigation("Options");
 
-                    b.Navigation("Votes");
-                });
-
-            modelBuilder.Entity("ApiParchePlanU.Models.PlanOption", b =>
-                {
                     b.Navigation("Votes");
                 });
 #pragma warning restore 612, 618

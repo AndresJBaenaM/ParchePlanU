@@ -2,24 +2,23 @@ using ApiParchePlanU.DAO;
 using ApiParchePlanU.Interfaces;
 using ApiParchePlanU.Models;
 using ApiParchePlanU.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using Scalar.AspNetCore;
 using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//Extraemos del archivo appsettings.json la cadena de conexión a la base de datos
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-//Configuramos Entity Framework con SQL Server
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(connectionString)
+    .ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning)));
 
-//Configuramos Identity usando nuestro modelo User
 builder.Services.AddIdentity<User, IdentityRole>(options =>
 {
     options.Password.RequireDigit = true;
@@ -29,8 +28,6 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
 
-
-//Configuración de autenticación con JWT
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -44,49 +41,40 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidAudience = builder.Configuration["Jwt:Audience"],
-
         IssuerSigningKey = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
     };
 });
 
-
-//Registro de Services del proyecto
 builder.Services.AddScoped<IParcheService, ParcheService>();
 builder.Services.AddScoped<IPlanService, PlanService>();
 builder.Services.AddScoped<IVoteService, VoteService>();
 builder.Services.AddScoped<IAttendanceService, AttendanceService>();
 builder.Services.AddScoped<IRankingServices, RankingService>();
-
-
-//Auth service
 builder.Services.AddScoped<IAuthService, AuthService>();
 
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler =
+            System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+    });
 
-//Controllers
-builder.Services.AddControllers();
-
-
-//OpenAPI (documentación)
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-
-//Pipeline de ejecución
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-
-    //Documentación interactiva
     app.MapScalarApiReference();
 }
 
 
 app.UseHttpsRedirection();
+<<<<<<< HEAD:Backend/Program.cs
 
 using (var scope = app.Services.CreateScope())
 {
@@ -100,11 +88,12 @@ using (var scope = app.Services.CreateScope())
     SeedUsersAsync(services).GetAwaiter().GetResult();
 }
 
+=======
+>>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Program.cs
 app.UseAuthentication();
-
 app.UseAuthorization();
-
 app.MapControllers();
+<<<<<<< HEAD:Backend/Program.cs
 
 app.Run();
 
@@ -162,3 +151,6 @@ async Task SeedUsersAsync(IServiceProvider services)
         }
     }
 }
+=======
+app.Run();
+>>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Program.cs

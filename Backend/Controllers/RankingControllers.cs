@@ -1,12 +1,14 @@
 ﻿using ApiParchePlanU.Interfaces;
 using ApiParchePlanU.Models;
 using ApiParchePlanU.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiParchePlanU.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class RankingController : ControllerBase
     {
         private readonly IRankingServices _rankingService;

@@ -17,7 +17,12 @@ namespace ApiParchePlanU.Models.DTOs
 
         [Required]
         public string Program {  get; set; } = null!;
+<<<<<<< HEAD:Backend/Models/DTOs/RegisterDTO.cs
         public string? AvatarUrl { get; set; }
+=======
+
+        public string? AvatarUrl { get; set; } = null!;
+>>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Models/DTOs/RegisterDTO.cs
 
         public string Role { get; set; } = "User";
     }

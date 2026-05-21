@@ -4,6 +4,7 @@ using ApiParchePlanU.DAO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiParchePlanU.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260520221133_AddCreatorIdRelation")]
+    partial class AddCreatorIdRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,20 +57,11 @@ namespace ApiParchePlanU.Migrations
                             Id = 1,
                             PlanId = 1,
                             Status = 0,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            UserId = "user1"
-=======
                             UserId = "user-0001"
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         },
                         new
                         {
                             Id = 2,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            PlanId = 2,
-                            Status = 0,
-                            UserId = "user2"
-=======
                             PlanId = 1,
                             Status = 0,
                             UserId = "user-0002"
@@ -337,7 +331,6 @@ namespace ApiParchePlanU.Migrations
                             PlanId = 9,
                             Status = 0,
                             UserId = "user-0010"
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         });
                 });
 
@@ -377,32 +370,18 @@ namespace ApiParchePlanU.Migrations
                         new
                         {
                             Id = 1,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            CoverImageUrl = "img1.jpg",
-                            Description = "Jugamos fútbol",
-                            InviteCode = "FUT123",
-                            Name = "Parche Futbol"
-=======
                             CoverImageUrl = "https://picsum.photos/seed/sistemas/400/200",
                             Description = "El parche de Ingeniería de Sistemas",
                             InviteCode = "SIS2026",
                             Name = "Parche Sistemas"
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         },
                         new
                         {
                             Id = 2,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            CoverImageUrl = "img2.jpg",
-                            Description = "Amantes del cine",
-                            InviteCode = "CINE123",
-                            Name = "Parche Cine"
-=======
                             CoverImageUrl = "https://picsum.photos/seed/industrial/400/200",
                             Description = "El parche de Ingeniería Industrial",
                             InviteCode = "IND2026",
                             Name = "Parche Industrial"
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         });
                 });
 
@@ -438,32 +417,18 @@ namespace ApiParchePlanU.Migrations
                             Id = 1,
                             ParcheId = 1,
                             Role = 0,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            UsuarioId = "user1"
-=======
                             UsuarioId = "user-0001"
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         },
                         new
                         {
                             Id = 2,
                             ParcheId = 1,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            Role = 0,
-                            UsuarioId = "user2"
-=======
                             Role = 2,
                             UsuarioId = "user-0002"
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         },
                         new
                         {
                             Id = 3,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            ParcheId = 2,
-                            Role = 0,
-                            UsuarioId = "user2"
-=======
                             ParcheId = 1,
                             Role = 2,
                             UsuarioId = "user-0003"
@@ -516,7 +481,6 @@ namespace ApiParchePlanU.Migrations
                             ParcheId = 2,
                             Role = 2,
                             UsuarioId = "user-0010"
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         });
                 });
 
@@ -529,12 +493,8 @@ namespace ApiParchePlanU.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CreatorId")
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                        .HasColumnType("nvarchar(max)");
-=======
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -568,14 +528,6 @@ namespace ApiParchePlanU.Migrations
                         new
                         {
                             Id = 1,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            Description = "Fútbol en cancha",
-                            EndVoting = new DateTime(2026, 3, 17, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            ParcheId = 1,
-                            StartVoting = new DateTime(2026, 3, 16, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            State = 1,
-                            Title = "Partido sábado"
-=======
                             CreatorId = "user-0001",
                             Description = "Plan de cine grupal",
                             EndVoting = new DateTime(2026, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -583,19 +535,10 @@ namespace ApiParchePlanU.Migrations
                             StartVoting = new DateTime(2026, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             State = 1,
                             Title = "Cine en el campus"
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         },
                         new
                         {
                             Id = 2,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            Description = "Ver película",
-                            EndVoting = new DateTime(2026, 3, 19, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            ParcheId = 2,
-                            StartVoting = new DateTime(2026, 3, 18, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            State = 0,
-                            Title = "Ir a cine"
-=======
                             CreatorId = "user-0002",
                             Description = "Partido en la cancha",
                             EndVoting = new DateTime(2026, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -746,7 +689,6 @@ namespace ApiParchePlanU.Migrations
                             StartVoting = new DateTime(2026, 3, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             State = 1,
                             Title = "Ciclovía grupal"
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         });
                 });
 
@@ -778,50 +720,27 @@ namespace ApiParchePlanU.Migrations
                         new
                         {
                             Id = 1,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            Lugar = "Cancha A",
-                            PlanId = 1,
-                            Time = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-=======
                             Lugar = "Campus Universidad",
                             PlanId = 1,
                             Time = new DateTime(2026, 4, 5, 14, 0, 0, 0, DateTimeKind.Unspecified)
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         },
                         new
                         {
                             Id = 2,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            Lugar = "Cancha B",
-                            PlanId = 1,
-                            Time = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-=======
                             Lugar = "Parque El Poblado",
                             PlanId = 1,
                             Time = new DateTime(2026, 4, 6, 16, 0, 0, 0, DateTimeKind.Unspecified)
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         },
                         new
                         {
                             Id = 3,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            Lugar = "Cine 1",
-                            PlanId = 2,
-                            Time = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-=======
                             Lugar = "Centro Comercial",
                             PlanId = 1,
                             Time = new DateTime(2026, 4, 7, 18, 0, 0, 0, DateTimeKind.Unspecified)
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         },
                         new
                         {
                             Id = 4,
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            Lugar = "Cine 2",
-                            PlanId = 2,
-                            Time = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-=======
                             Lugar = "Cancha Principal",
                             PlanId = 2,
                             Time = new DateTime(2026, 4, 5, 10, 0, 0, 0, DateTimeKind.Unspecified)
@@ -1112,7 +1031,6 @@ namespace ApiParchePlanU.Migrations
                             Lugar = "Ruta Montaña",
                             PlanId = 15,
                             Time = new DateTime(2026, 4, 7, 9, 0, 0, 0, DateTimeKind.Unspecified)
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         });
                 });
 
@@ -1435,21 +1353,12 @@ namespace ApiParchePlanU.Migrations
                     b.HasData(
                         new
                         {
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            UserId = "user1",
-=======
                             UserId = "user-0001",
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                             PlanId = 1,
                             PlanOptionId = 1
                         },
                         new
                         {
-<<<<<<< HEAD:Backend/Migrations/ApplicationDbContextModelSnapshot.cs
-                            UserId = "user2",
-                            PlanId = 2,
-                            PlanOptionId = 3
-=======
                             UserId = "user-0002",
                             PlanId = 1,
                             PlanOptionId = 2
@@ -1621,7 +1530,6 @@ namespace ApiParchePlanU.Migrations
                             UserId = "user-0009",
                             PlanId = 8,
                             PlanOptionId = 23
->>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Migrations/ApplicationDbContextModelSnapshot.cs
                         });
                 });
 
