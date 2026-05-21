@@ -1,44 +1,100 @@
-# ParchePlan U — Backend
+📘 ParchePlanU
+Aplicación web desarrollada con ASP.NET Core (C#) en el backend y React + Vite en el frontend.
+El proyecto permite gestionar parches, planes, ranking, asistencias y votos, con autenticación mediante JWT y base de datos en SQL Server.
 
-ParchePlan U es una aplicación web diseñada para estudiantes universitarios que necesitan un único lugar donde organizar sus parches con amigos o compañeros.
+🚀 Requisitos previos
+Antes de ejecutar el proyecto, asegúrate de tener instalado:
 
-El problema que resuelve es simple: coordinar un plan entre varios estudiantes evitando los problemas que surgen cuando se quiere hacer un parche — muchos chats, opiniones diferentes, etc. ParchePlan U centraliza todo este proceso desde la creación del grupo hasta la confirmación de asistencia.
+Node.js (versión 18 o superior)
 
-## Integrantes
+npm o yarn
 
-- Miguel Gómez Tobón
+.NET 8 SDK
 
-## Funcionalidades
+SQL Server (microsoft.com in Bing) (local o remoto)
 
-- **Autenticación** — Registro e inicio de sesión con JWT
-- **Parches** — Crea grupos, únete con código de invitación, gestiona miembros
-- **Planes** — Propón actividades con múltiples opciones de lugar y hora
-- **Votación** — Los miembros votan por su opción favorita.
-- **Asistencia** — Confirma si vas, no vas o tal vez (Yes / No / Maybe)
-- **Rankings** — Puntaje por organización y asistencia dentro de cada parche
+Git
 
-## Tecnologías
+📂 Clonar el repositorio
+bash
+git clone https://github.com/AndresJBaenaM/ProyectoIngWeb.git
+cd ProyectoIngWeb
+⚙️ Configuración del Backend (ASP.NET Core)
+Ve a la carpeta del backend:
 
-| Tecnología | Uso |
-|---|---|
-| ASP.NET Core | Framework principal de la API |
-| Entity Framework Core | ORM y migraciones de base de datos |
-| SQL Server | Base de datos relacional |
-| ASP.NET Identity | Autenticación y gestión de usuarios |
-| JWT | Autorización segura por token |
-| Scalar | Documentación interactiva de la API |
+bash
+cd ApiParchePlanU
+Configura la cadena de conexión en appsettings.json:
 
-## Instalación y ejecución
+json
+"ConnectionStrings": {
+  "DefaultConnection": "Server=localhost;Database=ParchePlanU;Trusted_Connection=True;TrustServerCertificate=True;"
+}
+Aplica las migraciones de Entity Framework:
 
-1. Clona el repositorio
-2. Configura la cadena de conexión en `appsettings.json`
-3. Corre las migraciones:
-```bash
-Update-Database
-```
-4. Ejecuta el proyecto con **F5** en Visual Studio
+bash
+dotnet ef database update
+Ejecuta el backend:
 
-La API queda en `https://localhost:7163`
+bash
+dotnet run
+👉 El backend se levantará en:
 
-La documentación interactiva en `https://localhost:7163/scalar/v1`
+http://localhost:5047 (HTTP)
 
+https://localhost:7163 (HTTPS, certificado de desarrollo)
+
+🎨 Configuración del Frontend (React + Vite)
+Ve a la carpeta del frontend:
+
+bash
+cd ParchePlanU-Frontend
+Instala las dependencias:
+
+bash
+npm install
+Ejecuta el servidor de desarrollo:
+
+bash
+npm run dev
+👉 El frontend se levantará en http://localhost:5173.
+
+🔑 Autenticación
+El sistema usa JWT para proteger las rutas del backend.
+
+Al iniciar sesión, el token se guarda en localStorage.
+
+Las peticiones protegidas deben incluir el header:
+
+http
+Authorization: Bearer <token>
+📌 Rutas principales
+/login → Iniciar sesión
+
+/register → Registro de usuario
+
+/parches → Listado de parches
+
+/planes → Listado de planes
+
+/ranking → Ranking de usuarios/parches
+
+/asistencias → Confirmaciones de asistencia
+
+/votos → Votos de los usuarios
+
+🛠️ Tecnologías usadas
+Backend: ASP.NET Core, Entity Framework, SQL Server, Identity, JWT
+
+Frontend: React, Vite, TailwindCSS, Axios, React Router
+
+DevOps: GitHub, Git
+
+✅ Ejecución completa
+Arranca el backend con dotnet run.
+
+Arranca el frontend con npm run dev.
+
+Abre http://localhost:5173 en tu navegador.
+
+Regístrate, inicia sesión y comienza a usar la aplicación 🎉.
