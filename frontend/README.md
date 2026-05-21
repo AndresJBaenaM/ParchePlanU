@@ -1,16 +1,100 @@
-# React + Vite
+📘 ParchePlanU
+Aplicación web desarrollada con ASP.NET Core (C#) en el backend y React + Vite en el frontend.
+El proyecto permite gestionar parches, planes, ranking, asistencias y votos, con autenticación mediante JWT y base de datos en SQL Server.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 Requisitos previos
+Antes de ejecutar el proyecto, asegúrate de tener instalado:
 
-Currently, two official plugins are available:
+Node.js (versión 18 o superior)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+npm o yarn
 
-## React Compiler
+.NET 8 SDK
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+SQL Server (microsoft.com in Bing) (local o remoto)
 
-## Expanding the ESLint configuration
+Git
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+📂 Clonar el repositorio
+bash
+git clone https://github.com/AndresJBaenaM/ProyectoIngWeb.git
+cd ProyectoIngWeb
+⚙️ Configuración del Backend (ASP.NET Core)
+Ve a la carpeta del backend:
+
+bash
+cd ApiParchePlanU
+Configura la cadena de conexión en appsettings.json:
+
+json
+"ConnectionStrings": {
+  "DefaultConnection": "Server=localhost;Database=ParchePlanU;Trusted_Connection=True;TrustServerCertificate=True;"
+}
+Aplica las migraciones de Entity Framework:
+
+bash
+dotnet ef database update
+Ejecuta el backend:
+
+bash
+dotnet run
+👉 El backend se levantará en:
+
+http://localhost:5047 (HTTP)
+
+https://localhost:7163 (HTTPS, certificado de desarrollo)
+
+🎨 Configuración del Frontend (React + Vite)
+Ve a la carpeta del frontend:
+
+bash
+cd ParchePlanU-Frontend
+Instala las dependencias:
+
+bash
+npm install
+Ejecuta el servidor de desarrollo:
+
+bash
+npm run dev
+👉 El frontend se levantará en http://localhost:5173.
+
+🔑 Autenticación
+El sistema usa JWT para proteger las rutas del backend.
+
+Al iniciar sesión, el token se guarda en localStorage.
+
+Las peticiones protegidas deben incluir el header:
+
+http
+Authorization: Bearer <token>
+📌 Rutas principales
+/login → Iniciar sesión
+
+/register → Registro de usuario
+
+/parches → Listado de parches
+
+/planes → Listado de planes
+
+/ranking → Ranking de usuarios/parches
+
+/asistencias → Confirmaciones de asistencia
+
+/votos → Votos de los usuarios
+
+🛠️ Tecnologías usadas
+Backend: ASP.NET Core, Entity Framework, SQL Server, Identity, JWT
+
+Frontend: React, Vite, TailwindCSS, Axios, React Router
+
+DevOps: GitHub, Git
+
+✅ Ejecución completa
+Arranca el backend con dotnet run.
+
+Arranca el frontend con npm run dev.
+
+Abre http://localhost:5173 en tu navegador.
+
+Regístrate, inicia sesión y comienza a usar la aplicación 🎉.

@@ -13,7 +13,7 @@ namespace ApiParchePlanU.Models.DTOs
         public string password { get; set; } = null!;
 
         [Required]
-        public string nombreCompleto { get; set; } = null!;
+        public string fullName { get; set; } = null!;
 
         [Required]
         public string Program {  get; set; } = null!;
@@ -24,6 +24,5 @@ namespace ApiParchePlanU.Models.DTOs
         public string? AvatarUrl { get; set; } = null!;
 >>>>>>> 1cd0d80ca1d36ce6426813e4ebba9c8f24b9e434:Models/DTOs/RegisterDTO.cs
 
-        public string Role { get; set; } = "User";
     }
 }
