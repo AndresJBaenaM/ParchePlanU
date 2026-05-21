@@ -5,6 +5,13 @@ function Ranking() {
   const [ranking, setRanking] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Mock data de respaldo
+  const mockRanking = [
+    { id: 1, nombre: "Andres", puntos: 120 },
+    { id: 2, nombre: "María", puntos: 95 },
+    { id: 3, nombre: "Carlos", puntos: 80 }
+  ];
+
   useEffect(() => {
     const fetchRanking = async () => {
       try {
@@ -12,9 +19,17 @@ function Ranking() {
         const response = await axios.get("http://localhost:5047/api/ranking", {
           headers: { Authorization: `Bearer ${token}` }
         });
-        setRanking(response.data);
+
+        // Si el backend devuelve datos, los usamos
+        if (response.data && response.data.length > 0) {
+          setRanking(response.data);
+        } else {
+          // Si no hay datos, usamos mock
+          setRanking(mockRanking);
+        }
       } catch (error) {
-        console.error("Error al cargar ranking:", error);
+        console.error("Error al cargar ranking, usando mock:", error);
+        setRanking(mockRanking); // fallback
       } finally {
         setLoading(false);
       }

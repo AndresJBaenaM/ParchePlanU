@@ -5,6 +5,13 @@ function Planes() {
   const [planes, setPlanes] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Mock data de respaldo
+  const mockPlanes = [
+    { id: 1, nombre: "Salida al cine", descripcion: "Ver película en el centro comercial", fecha: "2026-05-21", lugar: "Cine Centro" },
+    { id: 2, nombre: "Partido de fútbol", descripcion: "Jugar con amigos en la cancha", fecha: "2026-05-22", lugar: "Cancha municipal" },
+    { id: 3, nombre: "Cena grupal", descripcion: "Salir a comer y conversar", fecha: "2026-05-23", lugar: "Restaurante El Buen Sabor" }
+  ];
+
   useEffect(() => {
     const fetchPlanes = async () => {
       try {
@@ -12,9 +19,17 @@ function Planes() {
         const response = await axios.get("http://localhost:5047/api/planes", {
           headers: { Authorization: `Bearer ${token}` }
         });
-        setPlanes(response.data);
+
+        // Si el backend devuelve datos, los usamos
+        if (response.data && response.data.length > 0) {
+          setPlanes(response.data);
+        } else {
+          // Si no hay datos, usamos mock
+          setPlanes(mockPlanes);
+        }
       } catch (error) {
-        console.error("Error al cargar planes:", error);
+        console.error("Error al cargar planes, usando mock:", error);
+        setPlanes(mockPlanes); // fallback
       } finally {
         setLoading(false);
       }

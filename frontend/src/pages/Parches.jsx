@@ -5,6 +5,13 @@ function Parches() {
   const [parches, setParches] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Mock data de respaldo
+  const mockParches = [
+    { id: 1, nombre: "Parche de estudio", descripcion: "Reunión para repasar Ingeniería Web", fecha: "2026-05-21" },
+    { id: 2, nombre: "Parche deportivo", descripcion: "Jugar fútbol con amigos", fecha: "2026-05-22" },
+    { id: 3, nombre: "Parche social", descripcion: "Salir a comer y conversar", fecha: "2026-05-23" }
+  ];
+
   useEffect(() => {
     const fetchParches = async () => {
       try {
@@ -12,9 +19,17 @@ function Parches() {
         const response = await axios.get("http://localhost:5047/api/parches", {
           headers: { Authorization: `Bearer ${token}` }
         });
-        setParches(response.data);
+
+        // Si el backend devuelve datos, los usamos
+        if (response.data && response.data.length > 0) {
+          setParches(response.data);
+        } else {
+          // Si no hay datos, usamos mock
+          setParches(mockParches);
+        }
       } catch (error) {
-        console.error("Error al cargar parches:", error);
+        console.error("Error al cargar parches, usando mock:", error);
+        setParches(mockParches); // fallback
       } finally {
         setLoading(false);
       }
